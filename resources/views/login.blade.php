@@ -69,7 +69,6 @@
                                     <input type="text" name="email" class="form-control" id="input-username"
                                         placeholder="Enter Email">
                                     <label for="email">Email/Phone Number</label>
-                                    <label for="email">name</label>
                                 </div>
                       
                                 <div class="mt-3">
