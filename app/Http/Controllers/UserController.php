@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function login()
+    public function home()
     {
-        return view('login');
+        return view('home');
     }
 
     public function register(Request $request)
