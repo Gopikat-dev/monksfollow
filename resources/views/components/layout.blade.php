@@ -28,9 +28,9 @@
 
 
 <!-- bootstrap -->
-    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/bootstrap.bundle.min.js"></script>
     <!-- CUSTOM JS -->
-    <script src="/js/app.js"></script>
+    <script src="/app.js"></script>
 </body>
 
 </html>
