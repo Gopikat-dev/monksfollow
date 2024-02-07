@@ -18,8 +18,11 @@ document.getElementById('password-addon').addEventListener('click', function () 
 //two-step move next
 function moveToNext(elem, count) {
     if (elem.value.length > 0) {
-        document.getElementById("digit" + count + "-input").focus();
+        document.getElementById("digit" + (count + 1) + "-input").focus();
     }
+    else if (event.keyCode === 8 && elem.value.length === 0) { // Check if backspace key is pressed, input is empty, and it's not the first input
+        document.getElementById("digit" + (count - 1) + "-input").focus(); // Move focus to the previous input field
+    } 
   }
 
 
@@ -28,3 +31,4 @@ function moveToNext(elem, count) {
     if ( window.history.replaceState ) {
   window.history.replaceState( null, null, window.location.href );
 }
+
