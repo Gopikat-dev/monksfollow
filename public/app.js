@@ -15,9 +15,16 @@ document.getElementById('password-addon').addEventListener('click', function () 
 	}
 });
 
-// two-step move next
+//two-step move next
 function moveToNext(elem, count) {
     if (elem.value.length > 0) {
         document.getElementById("digit" + count + "-input").focus();
     }
+  }
+
+
+     //prevent form resubmission
+
+    if ( window.history.replaceState ) {
+  window.history.replaceState( null, null, window.location.href );
 }
