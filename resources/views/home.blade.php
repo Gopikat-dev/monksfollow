@@ -68,6 +68,9 @@
                                 <div class="form-floating form-floating-custom mb-3">
                                     <input type="text" name="email" class="form-control" id="input-username"
                                         placeholder="Enter Email">
+                                        @error('email')
+                                        <p class="m-0 small alert alert-danger shadow-sm">{{$message}} </p>
+                                        @enderror
                                     <label for="email">Email/Phone Number</label>
                                 </div>                 
                       

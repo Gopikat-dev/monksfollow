@@ -19,6 +19,7 @@
 
     <!-- Custom  Css -->
     <link rel="stylesheet" type="text/css" href="/style.css" />
+    
 
 </head>
 
@@ -31,6 +32,7 @@
     <script src="/bootstrap.bundle.min.js"></script>
     <!-- CUSTOM JS -->
     <script src="/app.js"></script>
+    
 </body>
 
 </html>
