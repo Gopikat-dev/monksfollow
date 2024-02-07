@@ -109,8 +109,7 @@
                                 <div class="mt-3">
                                     <button class="btn btn-dark shadow-none w-100" type="submit">Confirm</button>
                                 </div>
-                                <hr>
-                                <div id="countdown"></div>
+                                <hr>            
                                 <div class="mt-3 text-center">
                                     <p class="mb-0 text-muted">Did't receive a code ? <a href="#" 
                                             class="text-success fw-bold text-decoration-underline ms-1"> Resend
