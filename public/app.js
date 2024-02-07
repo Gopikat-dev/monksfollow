@@ -10,7 +10,8 @@ document.getElementById('password-addon').addEventListener('click', function () 
 	var passwordInput = document.getElementById("password-input");
 	if (passwordInput.type === "password") {
 		passwordInput.type = "text";
-	} else {
+	} 
+  else {
 		passwordInput.type = "password";
 	}
 });
