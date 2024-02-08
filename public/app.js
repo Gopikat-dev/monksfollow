@@ -4,7 +4,7 @@
   File Description: Main JS file of the template
 */
 
-// Show password input value
+
 
 //timer function
 const startingMinutes = 1;
@@ -32,6 +32,13 @@ function updateCountdown(){
         }
 }
 
+//resend otp
+ document.getElementById('resendButton').addEventListener('click', function() {
+        location.reload();
+    });
+
+
+// Show password input value
 
 document.getElementById('password-addon').addEventListener('click', function () {
 	var passwordInput = document.getElementById("password-input");
@@ -56,7 +63,7 @@ function moveToNext(elem, count) {
 
      //prevent form resubmission
 
-    if ( window.history.replaceState ) {
-  window.history.replaceState( null, null, window.location.href );
-}
+//     if ( window.history.replaceState ) {
+//   window.history.replaceState( null, null, window.location.href );
+// }
 

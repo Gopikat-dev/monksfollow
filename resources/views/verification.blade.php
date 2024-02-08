@@ -109,16 +109,15 @@
                                 <div class="mt-3">
                                     <button class="btn btn-dark shadow-none w-100" type="submit">Confirm</button>
                                 </div>
-                                <hr>            
-                               <form id="resendForm" method="POST" action="/resend-otp">
-                                @csrf
+                                <hr>          
+                               
     <div class="mt-3 text-center">
         <p class="mb-0 text-muted">Did't receive a code ? 
-            <button id="resendButton" class="btn btn-success fw-bold text-decoration-underline ms-1" type="submit" disabled>Resend</button>
+            <button id="resendButton" class="btn btn-success fw-bold text-decoration-underline ms-1" type="button" disabled >Resend</button>
             <span id="countdown"></span>
         </p>
     </div>
-</form>
+
 
                             </div><!-- end form -->    
                             </form>
