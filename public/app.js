@@ -6,6 +6,33 @@
 
 // Show password input value
 
+//timer function
+const startingMinutes = 1;
+let time = startingMinutes * 60;
+
+const resendButton = document.getElementById('resendButton');
+const countdownEl = document.getElementById('countdown');
+
+// Store the interval ID
+const intervalId = setInterval(updateCountdown, 1000);
+
+function updateCountdown(){
+  const minutes = Math.floor(time / 60);
+  let seconds = time % 60;
+
+  seconds = seconds <5 ? '0' + seconds : seconds;
+
+  countdownEl.innerHTML = `${minutes}:${seconds}`;
+  time--;
+
+  if(time === 0) {
+            clearInterval(intervalId); 
+            resendButton.disabled = false;
+            countdownEl.innerHTML = "";
+        }
+}
+
+
 document.getElementById('password-addon').addEventListener('click', function () {
 	var passwordInput = document.getElementById("password-input");
 	if (passwordInput.type === "password") {

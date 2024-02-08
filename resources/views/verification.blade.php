@@ -77,7 +77,7 @@
         <div class="mb-3">
             <label for="digit1-input" class="visually-hidden">Digit 1</label>
             <input type="text" name="digit1" class="form-control form-control-lg text-center"
-                onkeyup="moveToNext(this, 1)" maxlength="1" id="digit1-input" required>
+                onkeyup="moveToNext(this, 1)" maxlength="1" id="digit1-input" >
         </div>
     </div><!-- end col -->
 
@@ -85,7 +85,7 @@
         <div class="mb-3">
             <label for="digit2-input" class="visually-hidden">Digit 2</label>
             <input type="text" name="digit2" class="form-control form-control-lg text-center"
-                onkeyup="moveToNext(this, 2)" maxlength="1" id="digit2-input" required>
+                onkeyup="moveToNext(this, 2)" maxlength="1" id="digit2-input" >
         </div>
     </div><!-- end col -->
 
@@ -93,7 +93,7 @@
         <div class="mb-3">
             <label for="digit3-input" class="visually-hidden">Digit 3</label>
             <input type="text" name="digit3" class="form-control form-control-lg text-center"
-                onkeyup="moveToNext(this, 3)" maxlength="1" id="digit3-input" required>
+                onkeyup="moveToNext(this, 3)" maxlength="1" id="digit3-input" >
         </div>
     </div><!-- end col -->
 
@@ -101,7 +101,7 @@
         <div class="mb-3">
             <label for="digit4-input" class="visually-hidden">Digit 4</label>
             <input type="text" name="digit4" class="form-control form-control-lg text-center"
-                onkeyup="moveToNext(this, 4)" maxlength="1" id="digit4-input" required>
+                onkeyup="moveToNext(this, 4)" maxlength="1" id="digit4-input" >
         </div>
     </div><!-- end col -->
 </div><!-- end row -->
@@ -110,11 +110,16 @@
                                     <button class="btn btn-dark shadow-none w-100" type="submit">Confirm</button>
                                 </div>
                                 <hr>            
-                                <div class="mt-3 text-center">
-                                    <p class="mb-0 text-muted">Did't receive a code ? <a href="#" 
-                                            class="text-success fw-bold text-decoration-underline ms-1"> Resend
-                                        </a></p>
-                                </div>
+                               <form id="resendForm" method="POST" action="/resend-otp">
+                                @csrf
+    <div class="mt-3 text-center">
+        <p class="mb-0 text-muted">Did't receive a code ? 
+            <button id="resendButton" class="btn btn-success fw-bold text-decoration-underline ms-1" type="submit" disabled>Resend</button>
+            <span id="countdown"></span>
+        </p>
+    </div>
+</form>
+
                             </div><!-- end form -->    
                             </form>
                         </div><!-- auth content -->
