@@ -32,10 +32,6 @@ function updateCountdown(){
         }
 }
 
-//resend otp
- document.getElementById('resendButton').addEventListener('click', function() {
-        location.reload();
-    });
 
 
 // Show password input value
@@ -63,7 +59,7 @@ function moveToNext(elem, count) {
 
      //prevent form resubmission
 
-//     if ( window.history.replaceState ) {
-//   window.history.replaceState( null, null, window.location.href );
-// }
+    if ( window.history.replaceState ) {
+  window.history.replaceState( null, null, window.location.href );
+}
 
