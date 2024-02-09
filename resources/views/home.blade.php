@@ -1,3 +1,4 @@
+@guest
 <x-layout>
 
     <!-- START -->
@@ -94,3 +95,4 @@
     <!-- END -->
 
     </x-layout>
+    @endguest

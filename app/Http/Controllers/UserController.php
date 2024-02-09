@@ -15,6 +15,7 @@ class UserController extends Controller
 {
     public function home()
     {
+
         return view('home');
     }
 
@@ -24,14 +25,19 @@ class UserController extends Controller
     }
 
 
-
     public function register(Request $request)
     {
-        $incomingFields = $request->validate([
-            'email' => 'required|email',
-        ]);
+        // Check if the email is already stored in the session
+        $email = $request->session()->get('email');
 
-        $email = $incomingFields['email'];
+        // If the email is not in the session, use the one from the request
+        if (!$email) {
+            $incomingFields = $request->validate([
+                'email' => 'required|email',
+            ]);
+
+            $email = $incomingFields['email'];
+        }
 
         // Check if the user with this email exists
         $existingUser = User::where('email', $email)->first();
@@ -41,7 +47,6 @@ class UserController extends Controller
 
         // Set OTP expiry to 60 seconds from now
         $otpExpiry = Carbon::now()->addSeconds(300);
-
 
         // Store the OTP and its expiry time in the session
         $request->session()->put(['email' => $email]);
@@ -69,13 +74,12 @@ class UserController extends Controller
             Mail::to($email)->send(new OtpMail($otp));
         }
 
-
         // Render the verification Blade template with the email
         return view('verification', [
             'email' => $email,
-
         ]);
     }
+
 
 
     public function verifyOtpReturn(Request $request)

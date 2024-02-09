@@ -7,30 +7,30 @@
 
 
 //timer function
-const startingMinutes = 1;
-let time = startingMinutes * 60;
+function startTimer(duration, display) {
+        var timer = duration, minutes, seconds;
+        var timerInterval = setInterval(function () {
+            minutes = parseInt(timer / 60, 10);
+            seconds = parseInt(timer % 60, 10);
 
-const resendButton = document.getElementById('resendButton');
-const countdownEl = document.getElementById('countdown');
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
 
-// Store the interval ID
-const intervalId = setInterval(updateCountdown, 1000);
+            display.textContent = minutes + ":" + seconds;
 
-function updateCountdown(){
-  const minutes = Math.floor(time / 60);
-  let seconds = time % 60;
+            if (--timer < 0) {
+                clearInterval(timerInterval); // Clear the interval when timer reaches 0
+                document.getElementById('timerContainer').style.display = 'none'; // Hide the timer container
+                document.getElementById('resendButton').removeAttribute('hidden'); // Show the resend button
+            }
+        }, 1000);
+    }
 
-  seconds = seconds <5 ? '0' + seconds : seconds;
-
-  countdownEl.innerHTML = `${minutes}:${seconds}`;
-  time--;
-
-  if(time === 0) {
-            clearInterval(intervalId); 
-            resendButton.disabled = false;
-            countdownEl.innerHTML = "";
-        }
-}
+    window.onload = function () {
+        var fiveMinutes = 60 * 1,
+            display = document.querySelector('#time');
+        startTimer(fiveMinutes, display);
+    };
 
 
 
@@ -48,18 +48,17 @@ document.getElementById('password-addon').addEventListener('click', function () 
 
 //two-step move next
 function moveToNext(elem, count) {
-    if (elem.value.length > 0) {
-        document.getElementById("digit" + (count + 1) + "-input").focus();
+    // Check if the current input field is not empty and if there's a next input field
+    if (elem.value.length > 0 && document.getElementById("digit" + (count + 1) + "-input")) {
+        var nextInput = document.getElementById("digit" + (count + 1) + "-input");
+        nextInput.focus();
+        nextInput.setSelectionRange(0, nextInput.value.length); // Select the entire value in the next input field
     }
-    else if (event.keyCode === 8 && elem.value.length === 0) { // Check if backspace key is pressed, input is empty, and it's not the first input
-        document.getElementById("digit" + (count - 1) + "-input").focus(); // Move focus to the previous input field
+    else if (event.keyCode === 8 && elem.value.length === 0 && count > 1) { // Check if backspace key is pressed, input is empty, and it's not the first input
+        var prevInput = document.getElementById("digit" + (count - 1) + "-input");
+        if (prevInput) {
+            prevInput.focus(); // Move focus to the previous input field
+        }
     } 
-  }
-
-
-     //prevent form resubmission
-
-    if ( window.history.replaceState ) {
-  window.history.replaceState( null, null, window.location.href );
 }
 
