@@ -126,10 +126,13 @@
                             </div><!-- end form -->    
                             </form>
                              <div class="mt-3 text-center">
-    <p  id="timerContainer" class="mb-0 text-muted">Didn't receive a code? Resend in <span class="fw-bold" id="time"></span></p>
+    <p  id="timerContainer" class="mb-0 text-muted">Didn't receive a code? Resend OTP in <span class="fw-bold" id="time"></span></p>
     <form method="POST" action="/register">
         @csrf
         <button id="resendButton" class="btn fw-bold text-decoration-underline ms-1" type="submit" hidden >Resend</button>
+      @if($otp_resent_message)
+    <p class="text-success">{{ $otp_resent_message }}</p>
+@endif
     </form>
 </div>
 </div><!-- auth content -->

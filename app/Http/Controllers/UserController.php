@@ -27,6 +27,10 @@ class UserController extends Controller
 
     public function register(Request $request)
     {
+
+        // Initialize the variable
+        $otp_resent_message = '';
+
         // Check if the email is already stored in the session
         $email = $request->session()->get('email');
 
@@ -70,13 +74,15 @@ class UserController extends Controller
             // User with this email already exists, proceed to the next step
             // You may want to handle this case based on your application's logic
 
-            // Send OTP to the existing user's email
+            // Send OTP to the existing user's email            
             Mail::to($email)->send(new OtpMail($otp));
+            $otp_resent_message = 'OTP has been resent';
         }
 
         // Render the verification Blade template with the email
         return view('verification', [
             'email' => $email,
+            'otp_resent_message' => $otp_resent_message,
         ]);
     }
 
