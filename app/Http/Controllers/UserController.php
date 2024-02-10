@@ -27,21 +27,27 @@ class UserController extends Controller
 
     public function register(Request $request)
     {
-
-        // Initialize the variable
-        $otp_resent_message = '';
-
         // Check if the email is already stored in the session
         $email = $request->session()->get('email');
 
-        // If the email is not in the session, use the one from the request
-        if (!$email) {
+        // If the email is not provided in the session or it's different from the one in the request, use the one from the request
+        if (!$email || $request->filled('email')) {
             $incomingFields = $request->validate([
                 'email' => 'required|email',
             ]);
 
             $email = $incomingFields['email'];
+
+            // Update the session with the new email
+            $request->session()->put('email', $email);
+
+            // Set a flash message indicating that the OTP has been resent
+            $request->session()->flash('otp_resent_message', '');
+        } else {
+            // If it's not a new email, set the flash message indicating that the OTP has been resent
+            $request->session()->flash('otp_resent_message', 'OTP has been resent');
         }
+
 
         // Check if the user with this email exists
         $existingUser = User::where('email', $email)->first();
@@ -51,9 +57,6 @@ class UserController extends Controller
 
         // Set OTP expiry to 60 seconds from now
         $otpExpiry = Carbon::now()->addSeconds(300);
-
-        // Store the OTP and its expiry time in the session
-        $request->session()->put(['email' => $email]);
 
         // Create a new OTP record with is_active initially set to 1
         Otp::create([
@@ -76,13 +79,14 @@ class UserController extends Controller
 
             // Send OTP to the existing user's email            
             Mail::to($email)->send(new OtpMail($otp));
-            $otp_resent_message = 'OTP has been resent';
         }
+
+
 
         // Render the verification Blade template with the email
         return view('verification', [
             'email' => $email,
-            'otp_resent_message' => $otp_resent_message,
+
         ]);
     }
 

@@ -9,8 +9,7 @@
  $('#otp-spinner-container').hide(); 
  $(document).ready(function() {
     // Event listener for input fields
-    $('.otp-input').on('input', function() {
-         $('#otp-spinner-container').show(); 
+    $('.otp-input').on('input', function() {         
         checkFormFilled();
     });
 
@@ -31,6 +30,8 @@
 
     // Function to submit the form via AJAX
     function submitForm() {
+        // Show the spinner
+        $('#otp-spinner-container').show();
         // Serialize the form data
         var formData = $('#otpForm').serialize();
 
