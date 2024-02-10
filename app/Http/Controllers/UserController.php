@@ -87,6 +87,7 @@ class UserController extends Controller
         return redirect('/');
     }
 
+
     public function verifyOtp(Request $request)
     {
         // Validate incoming fields
@@ -109,7 +110,7 @@ class UserController extends Controller
             // Check if the entered OTP matches the hashed OTP stored in the database
             if (Hash::check($enteredOtp, $otpRecord->otp)) {
                 // Check if the OTP is still valid
-                if ($otpRecord->is_active && Carbon::now()->lt($otpRecord->otp_expiry)) {
+                if ($otpRecord->is_active && now()->lt($otpRecord->otp_expiry)) {
                     // OTP is correct and still valid
                     // Perform any other actions (e.g., log in the user)
 
@@ -123,12 +124,14 @@ class UserController extends Controller
                     $user = User::where('email', $email)->first();
                     Auth::login($user);
 
-                    return redirect('/dashboard');
+                    // Return success JSON response
+                    return response()->json(['message' => 'OTP verification successful']);
                 }
             }
         }
 
         // OTP verification failed
-        return redirect()->back()->withErrors(['otp' => 'Invalid OTP. Please try again.']);
+        // Return error JSON response
+        return response()->json(['error' => 'Invalid OTP. Please try again.'], 422);
     }
 }

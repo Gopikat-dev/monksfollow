@@ -5,6 +5,66 @@
 */
 
 
+//Ajax 
+ $('#otp-spinner-container').hide(); 
+ $(document).ready(function() {
+    // Event listener for input fields
+    $('.otp-input').on('input', function() {
+         $('#otp-spinner-container').show(); 
+        checkFormFilled();
+    });
+
+    // Function to check if all fields are filled
+    function checkFormFilled() {
+        var allFilled = true;
+        $('.otp-input').each(function() {
+            if ($(this).val() === '') {
+                allFilled = false;
+                return false; // Exit the loop early if any field is empty
+            }
+        });
+        
+        if (allFilled) {
+            submitForm();
+        }
+    }
+
+    // Function to submit the form via AJAX
+    function submitForm() {
+        // Serialize the form data
+        var formData = $('#otpForm').serialize();
+
+        // Send the serialized form data to the server for verification
+      $.ajax({
+    type: 'POST',
+    url: '/verifyotp',
+    data: formData, // Send the serialized form data
+    dataType: 'json',
+    success: function(response) {
+        // Handle the response message
+        $('#otp-response-message').text(response.message);
+        $('#otp-response-message').removeClass('alert-danger').addClass('alert-success');
+        window.location.href = '/dashboard'; 
+    },
+    error: function(xhr, status, error) {    
+        // Reset all input fields
+        $('.otp-input').val('');
+        // Focus on the first input field
+        $('#digit1-input').focus();
+        // Update the error message in the view
+        $('#otp-response-message').text(xhr.responseJSON.error);
+        $('#otp-response-message').removeClass('alert-success').addClass('alert-danger');
+    },
+    complete: function() {
+        $('#otp-spinner-container').hide(); // Hide the spinner after AJAX request is complete
+    }
+});
+
+
+    }
+});
+
+
 
 //timer function
 function startTimer(duration, display) {
@@ -61,4 +121,6 @@ function moveToNext(elem, count) {
         }
     } 
 }
+
+
 

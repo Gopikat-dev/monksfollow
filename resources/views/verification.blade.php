@@ -59,33 +59,37 @@
                         </div>
 
                         <div class="auth-content">
-                             <form method="POST" action="/verifyotp">
-                             @csrf                             
+                             <form id="otpForm">
+                              @csrf
                             <div class="text-center mb-4">
                                 <h4>Verify Your Email</h4>
                                 <p class="text-muted">Please enter the 4 digit code sent to <span class="fw-semibold">{{ session('email') }}</span></p>
                                 
                             </div>
-                            @if($errors->any())
+                            {{-- @if($errors->any())
     <div class="alert alert-danger text-center" >
         {{ $errors->first('otp') }}
     </div>
-@endif
+@endif --}}
+
+<p class="alert text-center" id="otp-response-message">
+
+</p>
 
                             <div class="form">
                                 <div class="row">
     <div class="col-3">
         <div class="mb-3">
             <label for="digit1-input" class="visually-hidden">Digit 1</label>
-            <input type="text" name="digit1" class="form-control form-control-lg text-center"
+            <input type="text" name="digit1" class="form-control form-control-lg text-center otp-input"
                 onkeyup="moveToNext(this, 1)" maxlength="1" id="digit1-input" autofocus required>
         </div>
     </div><!-- end col -->
 
     <div class="col-3">
         <div class="mb-3">
-            <label for="digit2-input" class="visually-hidden">Digit 2</label>
-            <input type="text" name="digit2" class="form-control form-control-lg text-center"
+            <label for="digit2-input" class="visually-hidden">Digit 2</label> 
+            <input type="text" name="digit2" class="form-control form-control-lg text-center otp-input"
                 onkeyup="moveToNext(this, 2)" maxlength="1" id="digit2-input" required>
         </div>
     </div><!-- end col -->
@@ -93,7 +97,7 @@
     <div class="col-3">
         <div class="mb-3">
             <label for="digit3-input" class="visually-hidden">Digit 3</label>
-            <input type="text" name="digit3" class="form-control form-control-lg text-center"
+            <input type="text" name="digit3" class="form-control form-control-lg text-center otp-input"
                 onkeyup="moveToNext(this, 3)" maxlength="1" id="digit3-input" required>
         </div>
     </div><!-- end col -->
@@ -101,15 +105,22 @@
     <div class="col-3">
         <div class="mb-3">
             <label for="digit4-input" class="visually-hidden">Digit 4</label>
-            <input type="text" name="digit4" class="form-control form-control-lg text-center"
+            <input type="text" name="digit4" class="form-control form-control-lg text-center otp-input"
                 onkeyup="moveToNext(this, 4)" maxlength="1" id="digit4-input" required>
         </div>
     </div><!-- end col -->
 </div><!-- end row -->
+<div id="otp-spinner-container" class="text-center">
+    <div class="spinner-border text-success" role="status">
+        <span class="sr-only"></span>
+    </div>
+</div>
 
-                                <div class="mt-3">
+
+
+                                {{-- <div class="mt-3">
                                     <button class="btn btn-dark shadow-none w-100" type="submit">Confirm</button>
-                                </div>
+                                </div> --}}
                                 <hr>          
                             
                             </div><!-- end form -->    
@@ -121,16 +132,11 @@
         <button id="resendButton" class="btn fw-bold text-decoration-underline ms-1" type="submit" hidden >Resend</button>
     </form>
 </div>
-                        </div><!-- auth content -->
-                    </div>
-                    <!-- end authbox -->
-                </div>
-                <!-- end col -->
-            </div>
-            <!-- end row -->
-        </div>
-        <!-- end container -->
-    </div>
-    <!-- END -->
-    </x-layout>
-     @endguest
+</div><!-- auth content -->
+</div><!-- end authbox -->
+</div><!-- end col -->
+</div><!-- end row -->
+</div><!-- end container -->
+</div><!-- END -->
+</x-layout>
+@endguest
