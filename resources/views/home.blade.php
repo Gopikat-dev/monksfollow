@@ -61,7 +61,7 @@
 
                         <div class="auth-content">
                             <div class="mb-3 pb-3 text-center">
-                                <h4 class="fw-normal">Welcome to <span class="fw-bold">Monks Mania</span></h4>
+                                <h4 class="fw-normal">Welcome to <span class="fw-bold">Monks Follow</span></h4>
                                 <p class="text-muted mb-0">Sign in to continue to Monks Follow.</p>
                             </div>
                             <form action="/register" method="POST">
