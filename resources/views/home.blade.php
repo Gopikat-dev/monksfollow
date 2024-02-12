@@ -67,8 +67,8 @@
                             <form action="/register" method="POST">
                                 @csrf
                                 <div class="form-floating form-floating-custom mb-3">
-                                    <input type="text" name="email" class="form-control" id="input-username"
-                                        placeholder="Enter Email">
+                                    <input type="text" name="identifier" class="form-control" id="input-username"
+                                        placeholder="Enter Email/Phone Number">
                                         @error('email')
                                         <p class="m-0 small alert alert-danger shadow-sm">{{$message}} </p>
                                         @enderror

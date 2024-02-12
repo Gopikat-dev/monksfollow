@@ -15,7 +15,7 @@ class CreateOtpsTable extends Migration
     {
         Schema::create('otps', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_email')->constrained(); // Assuming you have a users table
+            $table->foreignId('user_id')->constrained(); // Assuming you have a users table
             $table->string('otp');
             $table->timestamp('otp_expiry')->nullable();
             $table->boolean('is_active')->default(true);
