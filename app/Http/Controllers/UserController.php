@@ -58,13 +58,6 @@ class UserController extends Controller
         // Set OTP expiry to 60 seconds from now
         $otpExpiry = Carbon::now()->addSeconds(300);
 
-        // Create a new OTP record with is_active initially set to 1
-        Otp::create([
-            'user_email' => $email,
-            'otp' => Hash::make($otp),
-            'otp_expiry' => $otpExpiry,
-        ]);
-
         if (!$existingUser) {
             // User with this email doesn't exist, create a new user
             User::create([
@@ -81,6 +74,12 @@ class UserController extends Controller
             Mail::to($email)->send(new OtpMail($otp));
         }
 
+        // Create a new OTP record with is_active initially set to 1
+        Otp::create([
+            'user_email' => $email,
+            'otp' => Hash::make($otp),
+            'otp_expiry' => $otpExpiry,
+        ]);
 
 
         // Render the verification Blade template with the email
