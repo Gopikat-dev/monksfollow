@@ -63,15 +63,14 @@
                               @csrf
                             <div class="text-center mb-4">
                                 <h4>Verify Your Email</h4>
-                                <p class="text-muted">Please enter the 4 digit code sent to 
+                               <p class="text-muted">Please enter the 4 digit code sent to 
     <span class="fw-semibold">
-        @if(session('email'))
-            {{ session('email') }}
-        @elseif(session('mobile'))
-            {{ session('mobile') }}
-        @endif
+        {{ session('email') ?? session('mobile_number') }}
     </span>
 </p>
+
+
+
 
                                 
                             </div>
@@ -138,9 +137,9 @@
     <p  id="timerContainer" class="mb-0 text-muted">Didn't receive a code? Resend OTP in <span class="fw-bold" id="time"></span></p>
     <form method="POST" action="/register">
         @csrf        
-        <button id="resendButton" class="btn fw-bold text-decoration-underline ms-1" type="submit" >Resend</button>
-        @if(session('otp_resent_message'))
-    <p class="text-success">{{ session('otp_resent_message') }}</p>
+        <button id="resendButton" class="btn fw-bold text-decoration-underline ms-1" type="submit" name="resend" >Resend</button>
+       @if(isset($resentMessage))
+    <p class="alert alert-success">{{ $resentMessage }}</p>
 @endif
     </form>
 </div>
