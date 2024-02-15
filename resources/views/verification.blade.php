@@ -1,4 +1,4 @@
-@guest
+
 <x-layout>
 <!-- START -->
     <div class="account-pages">
@@ -150,4 +150,3 @@
 </div><!-- end container -->
 </div><!-- END -->
 </x-layout>
-@endguest

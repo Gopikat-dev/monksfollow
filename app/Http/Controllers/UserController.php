@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Vonage\Client\Credentials\Basic;
+use Vonage\Client;
+use Vonage\SMS\Message\SMS;
+use GuzzleHttp\Client as GuzzleClient;
 
 class UserController extends Controller
 {
@@ -102,16 +106,40 @@ class UserController extends Controller
         $resentMessage = null;
 
         // Check if the user clicked the resend button
-
-        // Send OTP to the user's email or mobile number
         if ($email) {
+            // Send OTP via email
             Mail::to($email)->send(new OtpMail($otp));
             if ($request->has('resend')) {
                 $resentMessage = "OTP has been resent to your email.";
             }
         } elseif ($mobileNumber) {
+            // Send OTP via SMS using Vonage
+            // Add "+91" before the mobile number
+            $toNumber = "+91" . $mobileNumber;
+
+            // Replace 'YOUR_API_KEY' and 'YOUR_API_SECRET' with your Vonage credentials
+            $vonageApiKey = env('VONAGE_KEY');
+            $vonageApiSecret = env('VONAGE_SECRET');
+
+            // Initialize Vonage client credentials
+            $basic  = new Basic($vonageApiKey, $vonageApiSecret);
+            $client = new Client($basic);
+
+            // Set the Guzzle HTTP client with CA bundle path
+            $guzzleClient = new GuzzleClient([
+                'verify' => storage_path('cacert.pem'), // Change the path accordingly
+            ]);
+            $client->setHttpClient($guzzleClient);
+
+            // Send SMS
+            $message = $client->message()->send([
+                'to' => $toNumber,
+                'from' => '+157575701',
+                'text' => "Your OTP is: $otp"
+            ]);
+
+
             if ($request->has('resend')) {
-                // Send OTP to the user's mobile number (you will need to implement this)
                 $resentMessage = "OTP has been resent to your mobile number.";
             }
         }

@@ -17,10 +17,10 @@ use App\Http\Controllers\DashboardController;
 
 
 //user controllers
-Route::get('/', [UserController::class, "home"]);
-Route::post('/register', [UserController::class, "register"]);
-Route::get('/register', [UserController::class, "registerReturn"]);
-Route::post('/verifyotp', [UserController::class, "verifyOtp"]);
+Route::get('/', [UserController::class, "home"])->middleware('prevent.authenticated');
+Route::post('/register', [UserController::class, "register"])->middleware('prevent.authenticated');
+Route::get('/register', [UserController::class, "registerReturn"])->middleware('prevent.authenticated');
+Route::post('/verifyotp', [UserController::class, "verifyOtp"])->middleware('guest');
 Route::get('/verifyotp', [UserController::class, "verifyOtpReturn"]);
 
 //dashboard controllers
