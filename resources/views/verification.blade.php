@@ -62,8 +62,8 @@
                              <form id="otpForm">
                               @csrf
                             <div class="text-center mb-4">
-                                <h4>Verify Your Email</h4>
-                               <p class="text-muted">Please enter the 4 digit code sent to 
+                                <h4>Verify Your Email/Phone Number</h4>
+                               <p class="text-muted">Please enter the 4 digit OTP sent to 
     <span class="fw-semibold">
         {{ session('email') ?? session('mobile_number') }}
     </span>
@@ -134,10 +134,10 @@
                             </div><!-- end form -->    
                             </form>
                              <div class="mt-3 text-center">
-    <p  id="timerContainer" class="mb-0 text-muted">Didn't receive a code? Resend OTP in <span class="fw-bold" id="time"></span></p>
+    <p  id="timerContainer" class="mb-0 text-muted">Resend OTP in <span class="fw-bold" id="time"></span></p>
     <form method="POST" action="/register">
         @csrf        
-        <button id="resendButton" class="btn fw-bold text-decoration-underline ms-1" type="submit" name="resend" hidden >Resend</button>
+        <button id="resendButton" class="btn fw-bold text-decoration-underline ms-1" type="submit" name="resend" hidden >Resend OTP</button>
        @if(isset($resentMessage))
     <p class="alert alert-success">{{ $resentMessage }}</p>
 @endif
