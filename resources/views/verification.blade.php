@@ -137,7 +137,7 @@
     <p  id="timerContainer" class="mb-0 text-muted">Didn't receive a code? Resend OTP in <span class="fw-bold" id="time"></span></p>
     <form method="POST" action="/register">
         @csrf        
-        <button id="resendButton" class="btn fw-bold text-decoration-underline ms-1" type="submit" name="resend" >Resend</button>
+        <button id="resendButton" class="btn fw-bold text-decoration-underline ms-1" type="submit" name="resend" hidden >Resend</button>
        @if(isset($resentMessage))
     <p class="alert alert-success">{{ $resentMessage }}</p>
 @endif
