@@ -17,12 +17,18 @@ class PreventAuthenticatedAccess
      */
     public function handle(Request $request, Closure $next)
     {
+        // Set cache-control headers to prevent caching
+        $response = $next($request);
+        $response->headers->set('Cache-Control', 'no-cache, no-store, must-revalidate');
+        $response->headers->set('Pragma', 'no-cache');
+        $response->headers->set('Expires', 'Sat, 01 Jan 2000 00:00:00 GMT');
+
+        // If user is authenticated, redirect them to the dashboard or any other appropriate route
         if (Auth::check()) {
-            // If user is authenticated, redirect them to the dashboard or any other appropriate route
             return redirect('/dashboard');
         }
 
         // If user is not authenticated, allow them to access the route
-        return $next($request);
+        return $response;
     }
 }
