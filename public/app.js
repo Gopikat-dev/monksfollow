@@ -13,6 +13,7 @@
         checkFormFilled();
     });
 
+
     // Function to check if all fields are filled
     function checkFormFilled() {
         var allFilled = true;
@@ -43,6 +44,7 @@
     dataType: 'json',
     success: function(response) {
         // Handle the response message
+        $('#resentMessage').hide();
         $('#otp-response-message').text(response.message);
         $('#otp-response-message').removeClass('alert-danger').addClass('alert-success');
         window.location.href = '/dashboard'; 
@@ -53,6 +55,7 @@
         // Focus on the first input field
         $('#digit1-input').focus();
         // Update the error message in the view
+        $('#resentMessage').hide();
         $('#otp-response-message').text(xhr.responseJSON.error);
         $('#otp-response-message').removeClass('alert-success').addClass('alert-danger');
     },
@@ -63,6 +66,7 @@
 
 
     }
+
 });
 
 
@@ -124,4 +128,4 @@ function moveToNext(elem, count) {
 }
 
 
-
+ 
