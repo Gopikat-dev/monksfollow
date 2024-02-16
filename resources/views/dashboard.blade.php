@@ -1,3 +1,4 @@
+<x-layout>
 @auth
     <div class="container py-md-5 container--narrow">
     <div class="text-center">
@@ -12,5 +13,5 @@
     </div>
 </div>
 @endauth
-
+</x-layout>
 
