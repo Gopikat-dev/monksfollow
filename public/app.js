@@ -50,12 +50,12 @@
         window.location.href = '/dashboard'; 
     },
     error: function(xhr, status, error) {    
+        $('#resentMessage').hide();
         // Reset all input fields
         $('.otp-input').val('');
         // Focus on the first input field
         $('#digit1-input').focus();
-        // Update the error message in the view
-        $('#resentMessage').hide();
+        // Update the error message in the view        
         $('#otp-response-message').text(xhr.responseJSON.error);
         $('#otp-response-message').removeClass('alert-success').addClass('alert-danger');
     },
