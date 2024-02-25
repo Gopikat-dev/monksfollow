@@ -25,7 +25,7 @@
     @error('identifier') <!-- Use 'identifier' instead of 'email' -->
     <p class="m-0 small alert alert-danger shadow-sm">{{$message}} </p>
     @enderror
-    <label for="email">Email/Phone Number</label> <!-- Consider changing 'for' attribute value to match the input id -->
+    <label for="email">Kindly enter Email/Phone Number</label> <!-- Consider changing 'for' attribute value to match the input id -->
 </div>
                  
                       
