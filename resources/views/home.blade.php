@@ -15,7 +15,7 @@
 
                         <div class="auth-content">
                             <div class="mb-3 pb-3 text-center">
-                                <h4 class="fw-normal">Welcome  <span class="fw-bold">Monks Follow</span></h4>
+                                <h4 class="fw-normal">Welcome hello <span class="fw-bold">Monks Follow</span></h4>
                                 <p class="text-muted mb-0">Enter your Email/Phone Number to receive Sign in OTP</p>
                             </div>
                             <form action="/register" method="POST">
